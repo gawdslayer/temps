@@ -1,11 +1,12 @@
-import http from 'http';
-  
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/html');
-  res.write('<h1>hello world</h1>');
-  res.end();
-});
-console.log('Server running at http://localhost:3030/')
-// Start the server and listen on port 3030
-server.listen(3030)
+// RVoRxEDzZ6veBoNIhoyduScyFOur6ez9
+// https://api.giphy.com/v1/gifs/search?api_key=RVoRxEDzZ6veBoNIhoyduScyFOur6ez9&q=happy&limit=25&offset=0&rating=g&lang=en&bundle=messaging_non_clips
+require("dotenv").config();
+console.log(process.env);
+async function fetchGifs() {
+  const response = await fetch(
+    'https://api.giphy.com/v1/gifs/search?api_key=RVoRxEDzZ6veBoNIhoyduScyFOur6ez9&q=happy&limit=25&offset=0&rating=g&lang=en&bundle=messaging_non_clips'
+  );
+  const data = await response.json();
+  console.log(data.data);
+  return data.data;
+}  
